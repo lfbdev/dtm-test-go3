@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dtm-test-go3
+  labels:
+    app: dtm-test-go3
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: dtm-test-go3
+  template:
+    metadata:
+      labels:
+        app: dtm-test-go3
+    spec:
+      containers:
+      - name: dtm-test-go3
+        image: "exploitht/dtm-test-go3:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
